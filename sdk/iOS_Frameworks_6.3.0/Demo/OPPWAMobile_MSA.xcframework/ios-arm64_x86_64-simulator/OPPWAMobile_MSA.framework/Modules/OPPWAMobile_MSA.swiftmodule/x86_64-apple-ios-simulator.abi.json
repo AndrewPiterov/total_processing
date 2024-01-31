@@ -1,0 +1,1091 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OPPWAMobile_MSA",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OPPWAMobile_MSA",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OPPWAMobile_MSA",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "OPPRequestServerMode",
+        "printedName": "OPPRequestServerMode",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "test",
+            "printedName": "test",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(OPPWAMobile_MSA.OPPRequestServerMode.Type) -> OPPWAMobile_MSA.OPPRequestServerMode",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OPPRequestServerMode",
+                    "printedName": "OPPWAMobile_MSA.OPPRequestServerMode",
+                    "usr": "c:@M@OPPWAMobile_MSA@E@OPPRequestServerMode"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "OPPWAMobile_MSA.OPPRequestServerMode.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OPPRequestServerMode",
+                        "printedName": "OPPWAMobile_MSA.OPPRequestServerMode",
+                        "usr": "c:@M@OPPWAMobile_MSA@E@OPPRequestServerMode"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@OPPWAMobile_MSA@E@OPPRequestServerMode@OPPRequestServerModeTest",
+            "mangledName": "$s15OPPWAMobile_MSA20OPPRequestServerModeO4testyA2CmF",
+            "moduleName": "OPPWAMobile_MSA",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 0
+          },
+          {
+            "kind": "Var",
+            "name": "live",
+            "printedName": "live",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(OPPWAMobile_MSA.OPPRequestServerMode.Type) -> OPPWAMobile_MSA.OPPRequestServerMode",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OPPRequestServerMode",
+                    "printedName": "OPPWAMobile_MSA.OPPRequestServerMode",
+                    "usr": "c:@M@OPPWAMobile_MSA@E@OPPRequestServerMode"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "OPPWAMobile_MSA.OPPRequestServerMode.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OPPRequestServerMode",
+                        "printedName": "OPPWAMobile_MSA.OPPRequestServerMode",
+                        "usr": "c:@M@OPPWAMobile_MSA@E@OPPRequestServerMode"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@OPPWAMobile_MSA@E@OPPRequestServerMode@OPPRequestServerModeLive",
+            "mangledName": "$s15OPPWAMobile_MSA20OPPRequestServerModeO4liveyA2CmF",
+            "moduleName": "OPPWAMobile_MSA",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 1
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "OPPWAMobile_MSA.OPPRequestServerMode?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OPPRequestServerMode",
+                    "printedName": "OPPWAMobile_MSA.OPPRequestServerMode",
+                    "usr": "c:@M@OPPWAMobile_MSA@E@OPPRequestServerMode"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:15OPPWAMobile_MSA20OPPRequestServerModeO8rawValueACSgSi_tcfc",
+            "mangledName": "$s15OPPWAMobile_MSA20OPPRequestServerModeO8rawValueACSgSi_tcfc",
+            "moduleName": "OPPWAMobile_MSA",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:15OPPWAMobile_MSA20OPPRequestServerModeO8rawValueSivp",
+            "mangledName": "$s15OPPWAMobile_MSA20OPPRequestServerModeO8rawValueSivp",
+            "moduleName": "OPPWAMobile_MSA",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:15OPPWAMobile_MSA20OPPRequestServerModeO8rawValueSivg",
+                "mangledName": "$s15OPPWAMobile_MSA20OPPRequestServerModeO8rawValueSivg",
+                "moduleName": "OPPWAMobile_MSA",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "c:@M@OPPWAMobile_MSA@E@OPPRequestServerMode",
+        "mangledName": "$s15OPPWAMobile_MSA20OPPRequestServerModeO",
+        "moduleName": "OPPWAMobile_MSA",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "enumRawTypeName": "Int",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "OPPMerchantServer",
+        "printedName": "OPPMerchantServer",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "requestCheckoutId",
+            "printedName": "requestCheckoutId(amount:currency:paymentType:serverMode:extraParameters:completionHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Double",
+                "printedName": "Swift.Double",
+                "usr": "s:Sd"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "OPPRequestServerMode",
+                "printedName": "OPPWAMobile_MSA.OPPRequestServerMode",
+                "usr": "c:@M@OPPWAMobile_MSA@E@OPPRequestServerMode"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.String : Swift.String]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : Swift.String]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:SD"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.String?, Swift.Error?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(Swift.String?, Swift.Error?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.String?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.Error?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@OPPWAMobile_MSA@objc(cs)OPPMerchantServer(cm)requestCheckoutIdWithAmount:currency:paymentType:serverMode:extraParameters:completionHandler:",
+            "mangledName": "$s15OPPWAMobile_MSA17OPPMerchantServerC17requestCheckoutId6amount8currency11paymentType10serverMode15extraParameters17completionHandlerySd_S2SSgAA010OPPRequestdM0OSDyS2SGSgyAK_s5Error_pSgtctFZ",
+            "moduleName": "OPPWAMobile_MSA",
+            "static": true,
+            "objc_name": "requestCheckoutIdWithAmount:currency:paymentType:serverMode:extraParameters:completionHandler:",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "requestPaymentStatus",
+            "printedName": "requestPaymentStatus(resourcePath:completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.Bool, Swift.String?, Swift.Error?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(Swift.Bool, Swift.String?, Swift.Error?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.String?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.Error?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@OPPWAMobile_MSA@objc(cs)OPPMerchantServer(cm)requestPaymentStatusWithResourcePath:completion:",
+            "mangledName": "$s15OPPWAMobile_MSA17OPPMerchantServerC20requestPaymentStatus12resourcePath10completionySS_ySb_SSSgs5Error_pSgtctFZ",
+            "moduleName": "OPPWAMobile_MSA",
+            "static": true,
+            "objc_name": "requestPaymentStatusWithResourcePath:completion:",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@OPPWAMobile_MSA@objc(cs)OPPMerchantServer",
+        "mangledName": "$s15OPPWAMobile_MSA17OPPMerchantServerC",
+        "moduleName": "OPPWAMobile_MSA",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "hasMissingDesignatedInitializers": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerConfig.swift",
+      "kind": "StringLiteral",
+      "offset": 483,
+      "length": 28,
+      "value": "\"https:\/\/eu-test.oppwa.com\/\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerConfig.swift",
+      "kind": "StringLiteral",
+      "offset": 536,
+      "length": 28,
+      "value": "\"https:\/\/eu-prod.oppwa.com\/\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerConfig.swift",
+      "kind": "Dictionary",
+      "offset": 649,
+      "length": 170,
+      "value": "[(\"authentication.bearer\", \"ZmY4MDgwODEzODUxNmVmNDAxMzg1MjkzNmVjNTAwZjZ8OFhKWGNzak0=\"), (\"authentication.entityId\", \"ff80808138516ef4013852936ec200f2\")]"
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerConfig.swift",
+      "kind": "Dictionary",
+      "offset": 877,
+      "length": 341,
+      "value": "[(\"registrations[0].id\", \"8a82944a622a196201622a4b01ca3dc7\"), (\"registrations[1].id\", \"8a8294495896823b01589b3a7efb4313\"), (\"registrations[2].id\", \"8a82944a57c3d6610157d710b38a37ed\"), (\"registrations[3].id\", \"8ac7a49f774dc63f01774e2425b723d3\"), (\"registrations[4].id\", \"8ac7a49f774dc63f01775d84d7c31812\")]"
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 465,
+      "length": 25,
+      "value": "\"authentication.entityId\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 523,
+      "length": 23,
+      "value": "\"authentication.userId\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 581,
+      "length": 25,
+      "value": "\"authentication.password\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 639,
+      "length": 23,
+      "value": "\"authentication.bearer\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 698,
+      "length": 36,
+      "value": "\"customParameters[USE_3D_SIMULATOR]\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 854,
+      "length": 12,
+      "value": "\"checkouts\/\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 922,
+      "length": 3,
+      "value": "\"\/\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 1042,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 1164,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 1242,
+      "length": 18,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 1249,
+      "length": 1,
+      "value": "\"=\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 1258,
+      "length": 1,
+      "value": "\"&\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 1507,
+      "length": 9,
+      "value": "\"Bearer \""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 1519,
+      "length": 21,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 1529,
+      "length": 1,
+      "value": "\"|\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 1539,
+      "length": 43,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 2104,
+      "length": 6,
+      "value": "\"POST\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 2136,
+      "length": 18,
+      "value": "\"application\/json\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 2176,
+      "length": 8,
+      "value": "\"Accept\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 2246,
+      "length": 15,
+      "value": "\"Authorization\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 2711,
+      "length": 18,
+      "value": "\"sendRegistration\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 2766,
+      "length": 6,
+      "value": "\"true\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 2803,
+      "length": 10,
+      "value": "\"entityId\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 3147,
+      "length": 18,
+      "value": "\"sendRegistration\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 3322,
+      "length": 6,
+      "value": "\"true\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 3928,
+      "length": 9,
+      "value": "\"Bearer \""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 4582,
+      "length": 9,
+      "value": "\"Bearer \""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 4811,
+      "length": 5,
+      "value": "\"999\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 4859,
+      "length": 8,
+      "value": "\"result\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 4922,
+      "length": 6,
+      "value": "\"code\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 5120,
+      "length": 5,
+      "value": "\"000\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 5164,
+      "length": 9,
+      "value": "\"000.200\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 5291,
+      "length": 15,
+      "value": "\"Unknown error\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 5345,
+      "length": 8,
+      "value": "\"result\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 5415,
+      "length": 13,
+      "value": "\"description\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 5536,
+      "length": 29,
+      "value": "\"OPPWAMobile_MSA.errorDomain\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5596,
+      "length": 3,
+      "value": "999"
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 5807,
+      "length": 14,
+      "value": "\"paymentBrand\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "BooleanLiteral",
+      "offset": 5860,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 5910,
+      "length": 17,
+      "value": "\"PAYPAL_CONTINUE\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 6045,
+      "length": 14,
+      "value": "\"paymentBrand\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "BooleanLiteral",
+      "offset": 6098,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 6139,
+      "length": 7,
+      "value": "\"MBWAY\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 6265,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 6308,
+      "length": 15,
+      "value": "\"resultDetails\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServerUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 6395,
+      "length": 16,
+      "value": "\"cardholderInfo\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "IntegerLiteral",
+      "offset": 464,
+      "length": 4,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "IntegerLiteral",
+      "offset": 464,
+      "length": 4,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 2190,
+      "length": 10,
+      "value": "\"entityId\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 2243,
+      "length": 8,
+      "value": "\"amount\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 2268,
+      "length": 6,
+      "value": "\"%.2f\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 2307,
+      "length": 10,
+      "value": "\"currency\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 2400,
+      "length": 13,
+      "value": "\"paymentType\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 2578,
+      "length": 74,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 2639,
+      "length": 2,
+      "value": "\"v1\/checkouts\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "Array",
+      "offset": 3094,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 3159,
+      "length": 4,
+      "value": "\"id\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "BooleanLiteral",
+      "offset": 4876,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 5228,
+      "length": 30,
+      "value": "\"?entityId=\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 5257,
+      "length": 1,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 5383,
+      "length": 15,
+      "value": "\"Authorization\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "Array",
+      "offset": 5600,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 6305,
+      "length": 4,
+      "value": "\"id\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "BooleanLiteral",
+      "offset": 6580,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "BooleanLiteral",
+      "offset": 6674,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 6975,
+      "length": 96,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 7051,
+      "length": 2,
+      "value": "\"v1\/payments\/\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 7070,
+      "length": 1,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 7170,
+      "length": 15,
+      "value": "\"registrations\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 7212,
+      "length": 13,
+      "value": "\"paymentType\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 7229,
+      "length": 4,
+      "value": "\"FI\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 7249,
+      "length": 14,
+      "value": "\"paymentBrand\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "StringLiteral",
+      "offset": 7267,
+      "length": 17,
+      "value": "\"PAYPAL_CONTINUE\""
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "Array",
+      "offset": 7749,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/jenkins\/.jenkins\/workspace\/iOS_release\/OPPWAMobile\/target\/private\/OPPWAMobile\/OPPWAMobile_MSA\/OPPMerchantServer.swift",
+      "kind": "BooleanLiteral",
+      "offset": 7902,
+      "length": 5,
+      "value": "false"
+    }
+  ]
+}
