@@ -15,7 +15,8 @@ class TotalProcessing {
   }
 
   ///Configure the Checkout Settings
-  ///Initialize CheckoutSettings with received checkout ID, it controls the information that is shown to the shopper.
+  ///Initialize CheckoutSettings with received checkout ID,
+  ///it controls the information that is shown to the shopper.
   void _checkoutSettings(
       {required String checkoutId,
       required List<String> paymentBrands,
