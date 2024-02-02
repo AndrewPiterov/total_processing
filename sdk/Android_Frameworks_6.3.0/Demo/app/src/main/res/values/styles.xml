@@ -9,10 +9,10 @@
     </style>
 
     <!-- Custom checkout theme -->
-    <style name="CustomCheckoutTheme" parent="Theme.Checkout.Light">
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="headerBackground">@color/colorAccent</item>
-    </style>
+<!--    <style name="CustomCheckoutTheme" parent="Theme.Checkout.Light">-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+<!--&lt;!&ndash;        <item name="headerBackground">@color/colorAccent</item>&ndash;&gt;-->
+<!--    </style>-->
 
     <style name="TextInputLayout">
         <item name="hintTextAppearance">@style/HintTextAppearance</item>
