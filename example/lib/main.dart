@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _totalProcessingPlugin = TotalProcessing();
+  final _totalProcessingPlugin = TotalProcessingPlugin();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,8 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: ElevatedButton(
             onPressed: () {
-              _totalProcessingPlugin.startCheckout();
+              _totalProcessingPlugin.startCheckout(
+                  checkoutId: '', paymentBrands: ["VISA", "DIRECTDEBIT_SEPA"]);
             },
             child: const Text('TEST CHECKOUT'),
           ),

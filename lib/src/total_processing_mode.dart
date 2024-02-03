@@ -1,0 +1,1 @@
+enum TotalProcessingMode { live, test }
