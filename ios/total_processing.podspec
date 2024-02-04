@@ -15,12 +15,16 @@ A new Flutter project.
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.platform = :ios, '11.0'
-  s.vendored_frameworks='FR/OOPWAMobile.framework',
-     'FR/ipworks3ds_sdk.framework'
 
+  s.platform = :ios, '11.0'
+  s.preserve_paths = 'OOPWAMobile.xcframework/**/*','ipworks3ds_sdk.xcframework/**/*'
+  s.vendored_frameworks='FR/OOPWAMobile.xcframework',
+     'FR/ipworks3ds_sdk.xcframework'
+  s.xcconfig = { 'OTHER_LDFLAGS' => '-framework OOPWAMobile -framework ipworks3ds_sdk' }
+  s.static_framework = true
 
   # Flutter.framework does not contain a i386 slice.
-  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
-  s.swift_version = '5.0'
+  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386 arm64' }
+  s.swift_version = '5.9.2'
 end
+
