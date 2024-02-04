@@ -1,13 +1,12 @@
 //
-//  BridgingHeader.h
+//  total_processing-Bridging-Header.h
 //  Pods
 //
-//  Created by KAKZAKI PRO on 03/02/24.
+//  Created by KAKZAKI PRO on 04/02/24.
 //
 
-#ifndef total_proc-Bridging-Header_h
-#define BridgingHeader_h
+#ifndef total_processing_Bridging_Header_h
+#define total_processing_Bridging_Header_h
 
 #import <OPPWAMobile/OPPWAMobile.h>
-
-#endif /* BridgingHeader_h */
+#endif /* total_processing_Bridging_Header_h */
