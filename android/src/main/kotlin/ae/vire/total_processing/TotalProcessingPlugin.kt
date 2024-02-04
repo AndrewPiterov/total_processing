@@ -61,8 +61,19 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
   }
 
-  private fun checkoutSettings(shopperResultURL: String) {
+  var paymentParams: PaymentParams? = null
 
+  private fun checkoutSettings(shopperResultURL: String) {
+    val paymentParams = CardPaymentParams(
+            checkoutId,
+            brand,
+            number,
+            holder,
+            expiryMonth,
+            expiryYear,
+            cvv
+    )
+    paymentParams.shopperResultUrl = shopperResultURL
   }
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
