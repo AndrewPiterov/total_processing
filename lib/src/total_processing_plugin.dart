@@ -1,23 +1,21 @@
 import 'package:flutter/services.dart';
+import 'package:total_processing/src/total_processing_checkout_settings.dart';
 
 class TotalProcessingPlugin {
   final methodChannel = const MethodChannel('total_processing');
 
+  ///Start the Checkout Page
+  /// and
   ///Configure the Checkout Settings
-  ///Initialize CheckoutSettings with received checkout ID,
   ///it controls the information that is shown to the shopper.
-  void checkoutSettings({
-    required List<String> paymentBrands,
-    required String shopperResultURL,
+  void startCheckout({
+    required String checkoutId,
+    required TotalProcessingCheckoutSettings settings,
   }) {
-    methodChannel.invokeMethod('checkoutSettings',
-        {'shopperResultURL': shopperResultURL, 'paymentBrands': paymentBrands});
-  }
-
-  ///Present the Checkout Page
-  void startCheckout({required String checkoutId}) {
     methodChannel.invokeMethod('startCheckout', {
       'checkoutId': checkoutId,
+      'shopperResultURL': settings.shopperResultURL,
+      'paymentBrands': settings.paymentBrands
     });
   }
 

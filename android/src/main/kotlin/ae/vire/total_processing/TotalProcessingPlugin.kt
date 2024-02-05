@@ -1,7 +1,16 @@
 package ae.vire.total_processing
 
-import androidx.annotation.NonNull
-
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
+import android.os.Parcelable
+import android.util.Log
+import com.oppwa.mobile.connect.checkout.dialog.CheckoutActivity
+import com.oppwa.mobile.connect.checkout.meta.CheckoutActivityResult
+import com.oppwa.mobile.connect.checkout.meta.CheckoutSettings
+import com.oppwa.mobile.connect.exception.PaymentError
+import com.oppwa.mobile.connect.provider.Connect
+import com.oppwa.mobile.connect.provider.Transaction
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -10,14 +19,19 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
+import io.flutter.plugin.common.PluginRegistry
 
 /** TotalProcessingPlugin */
-class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
+class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.ActivityResultListener {
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
   private lateinit var channel : MethodChannel
+  private lateinit var activity: Activity
+
+  private val CHECKOUT_REQUEST_CODE = 123
+
   private var handleCheckoutResultEvent: EventChannel? = null
   private var handleCheckoutResultSink : EventChannel.EventSink? = null
   private val handleCheckoutResultHandler = object : EventChannel.StreamHandler {
@@ -36,18 +50,10 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
   override fun onMethodCall(call: MethodCall, result: Result) {
     when(call.method) {
-      "checkoutSettings" ->{
-        val paymentBrands: String? = call.argument<String>("paymentBrands")
-        val shopperResultURL: String? = call.argument<String>("shopperResultURL")
-        if (shopperResultURL != null) {
-          checkoutSettings(shopperResultURL)
-        }
-      }
       "startCheckout" -> {
-        val checkoutID: String? = call.argument<String>("checkoutID")
-        if (checkoutID != null) {
-          startCheckout(checkoutID)
-        };
+        val checkoutID: String = call.argument<String>("checkoutId")!!
+        val paymentBrands: List<String> = call.argument<List<String>>("paymentBrands")!!
+          startCheckout(checkoutID, paymentBrands)
       }
       else -> result.notImplemented()
     }
@@ -57,39 +63,89 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     channel.setMethodCallHandler(null)
   }
 
-  private fun startCheckout(checkoutID: String) {
-
+  @SuppressLint("SuspiciousIndentation")
+  private fun startCheckout(checkoutID: String, paymentBrands: List<String>) {
+    // since mSDK version 6.0.0 the shopper result URL is not required
+    val checkoutSettings = CheckoutSettings(checkoutID, paymentBrands.toSet(), Connect.ProviderMode.TEST)
+    val var3: Intent = Intent(
+      activity,
+      CheckoutActivity::class.java
+    ).putExtra("com.oppwa.mobile.connect.checkout.dialog.EXTRA_CHECKOUT_SETTINGS", checkoutSettings)
+      if (checkoutSettings.componentName != null) {
+        var3.putExtra(
+          "com.oppwa.mobile.connect.checkout.dialog.EXTRA_CHECKOUT_RECEIVER",
+          checkoutSettings.componentName
+        )
+      }
+      if (checkoutSettings.paymentButtonBrand != null) {
+        var3.putExtra(
+          "com.oppwa.mobile.connect.checkout.dialog.EXTRA_CHECKOUT_PAYMENT_BUTTON_METHOD",
+          checkoutSettings.paymentButtonBrand
+        )
+      }
+    Log.i("startActivity", "startActivity")
+    activity.startActivityForResult(var3,CHECKOUT_REQUEST_CODE)
   }
 
-  var paymentParams: PaymentParams? = null
 
-  private fun checkoutSettings(shopperResultURL: String) {
-    val paymentParams = CardPaymentParams(
-            checkoutId,
-            brand,
-            number,
-            holder,
-            expiryMonth,
-            expiryYear,
-            cvv
-    )
-    paymentParams.shopperResultUrl = shopperResultURL
+  private fun handleCheckoutResult(result: CheckoutActivityResult) {
+    if (result.isErrored) {
+      Log.i("handleCheckoutResult", "errorInfo :${result.paymentError?.errorInfo}")
+      Log.i("handleCheckoutResult", "errorMessage :${result.paymentError?.errorMessage}")
+    }
+
+    if (result.isCanceled) {
+      Log.i("handleCheckoutResult", "isCanceled")
+    }
+
+    Log.i("handleCheckoutResult", "${result.transaction}")
+
+    val resourcePath = result.resourcePath
+
+    if (resourcePath != null) {
+      Log.i("resourcePath", "$resourcePath")
+    }
   }
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-
+    activity = binding.activity
+    binding.addActivityResultListener(this)
   }
 
   override fun onDetachedFromActivityForConfigChanges() {
-
   }
 
   override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-
+    activity = binding.activity
+    binding.addActivityResultListener(this)
   }
 
   override fun onDetachedFromActivity() {
 
+  }
+
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
+    if (requestCode == CHECKOUT_REQUEST_CODE) {
+      // Ensure the result is for the checkout request
+      if (data != null) {
+        val checkoutResult = parseCheckoutResult(resultCode,data)
+        handleCheckoutResult(checkoutResult)
+        return true
+      }
+    }
+    return false
+  }
+
+  private fun parseCheckoutResult(resultCode: Int,intent: Intent): CheckoutActivityResult {
+    val builder = CheckoutActivityResult.Builder()
+
+    val isCanceled = resultCode == 101
+
+    return builder.setTransaction(intent.getParcelableExtra<Parcelable>("com.oppwa.mobile.connect.checkout.dialog.CHECKOUT_RESULT_TRANSACTION") as Transaction?)
+      .setPaymentError(intent.getParcelableExtra<Parcelable>("com.oppwa.mobile.connect.checkout.dialog.CHECKOUT_RESULT_ERROR") as PaymentError?)
+      .setResourcePath(intent.getStringExtra("com.oppwa.mobile.connect.checkout.dialog.CHECKOUT_RESULT_RESOURCE_PATH"))
+      .setCanceled(isCanceled)
+      .build()
   }
 
 }
