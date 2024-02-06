@@ -44,7 +44,7 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Pl
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "total_processing")
     channel.setMethodCallHandler(this)
-    handleCheckoutResultEvent = EventChannel(flutterPluginBinding.binaryMessenger, "scannerResult")
+    handleCheckoutResultEvent = EventChannel(flutterPluginBinding.binaryMessenger, "handleCheckoutResult")
     handleCheckoutResultEvent!!.setStreamHandler(handleCheckoutResultHandler)
   }
 
@@ -89,22 +89,45 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Pl
 
 
   private fun handleCheckoutResult(result: CheckoutActivityResult) {
-    if (result.isErrored) {
-      Log.i("handleCheckoutResult", "errorInfo :${result.paymentError?.errorInfo}")
-      Log.i("handleCheckoutResult", "errorMessage :${result.paymentError?.errorMessage}")
-    }
-
-    if (result.isCanceled) {
-      Log.i("handleCheckoutResult", "isCanceled")
-    }
-
-    Log.i("handleCheckoutResult", "${result.transaction}")
-
-    val resourcePath = result.resourcePath
-
-    if (resourcePath != null) {
-      Log.i("resourcePath", "$resourcePath")
-    }
+//    if (result.isErrored) {
+//      Log.i("handleCheckoutResult", "errorInfo :${result.paymentError?.errorInfo}")
+//      Log.i("handleCheckoutResult", "errorMessage :${result.paymentError?.errorMessage}")
+//    }
+//
+//    if (result.isCanceled) {
+//      Log.i("handleCheckoutResult", "isCanceled")
+//    }
+//
+//    Log.i("handleCheckoutResult", "${result.transaction}")
+//
+//    val resourcePath = result.resourcePath
+//
+//    if (resourcePath != null) {
+//      Log.i("resourcePath", "$resourcePath")
+//    }
+    val item: MutableMap<String, Any?> = HashMap()
+    item["isErrored"] = result.isErrored
+    val paymentError: MutableMap<String, Any?> = HashMap()
+    paymentError["errorCode"] = result.paymentError?.errorCode.toString()
+    paymentError["errorInfo"] = result.paymentError?.errorInfo
+    paymentError["errorMessage"] = result.paymentError?.errorMessage
+    item["paymentError"] = paymentError
+    item["isCanceled"] = result.isCanceled
+    item["resourcePath"] = result.resourcePath.toString()
+    val transaction: MutableMap<String, Any?> = HashMap()
+    transaction["transactionType"] = result.transaction?.transactionType.toString()
+    val paymentParams: MutableMap<String, Any?> = HashMap()
+    paymentParams["checkoutId"] = result.transaction?.paymentParams?.checkoutId
+    paymentParams["paymentBrand"] = result.transaction?.paymentParams?.paymentBrand
+    paymentParams["shopperResultUrl"] = result.transaction?.paymentParams?.shopperResultUrl
+    transaction["paymentParams"] = paymentParams
+    transaction["brandSpecificInfo"] = result.transaction?.brandSpecificInfo.toString()
+    transaction["redirectUrl"] = result.transaction?.redirectUrl.toString()
+    transaction["threeDS2Info"] = result.transaction?.threeDS2Info.toString()
+    transaction["threeDS2MethodRedirectUrl"] = result.transaction?.threeDS2MethodRedirectUrl.toString()
+    transaction["yooKassaInfo"] = result.transaction?.yooKassaInfo.toString()
+    item["transaction"] = transaction
+    handleCheckoutResultSink?.success(item)
   }
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
