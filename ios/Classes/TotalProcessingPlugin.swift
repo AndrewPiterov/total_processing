@@ -28,22 +28,19 @@ public class TotalProcessingPlugin: NSObject, FlutterPlugin, FlutterStreamHandle
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     switch call.method {
-    case "checkoutSettings":
+    case "startCheckout":
         if let args = call.arguments as? [String:Any]{
+            let checkoutID = args["checkoutID"] as! String
+            
             let paymentBrands = args["paymentBrands"] as! Array<String>
             checkoutSettings.paymentBrands = paymentBrands
             
             let shopperResultURL = args["shopperResultURL"] as! String
             checkoutSettings.shopperResultURL = shopperResultURL
-        }else{
-            result(FlutterError(code: "InvalidArgumentt", message: "Invalid argument for 'bmac',", details: nil))
-        }
-    case "startCheckout":
-        if let args = call.arguments as? [String:Any]{
-            let checkoutID = args["checkoutID"] as! String
+            
             startCheckout(checkoutID: checkoutID)
         }else{
-            result(FlutterError(code: "InvalidArgumentt", message: "Invalid argument for 'bmac',", details: nil))
+            result(FlutterError(code: "InvalidArgumentt", message: "Invalid argument", details: nil))
         }
     default:
       result(FlutterMethodNotImplemented)
@@ -51,8 +48,6 @@ public class TotalProcessingPlugin: NSObject, FlutterPlugin, FlutterStreamHandle
   }
     let provider = OPPPaymentProvider(mode: OPPProviderMode.test)
     let checkoutSettings = OPPCheckoutSettings()
-    
-    
     
     
     private func startCheckout(checkoutID: String) {
