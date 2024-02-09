@@ -58,7 +58,7 @@
 		</data>
 		<key>Headers/OPPCheckoutSettings.h</key>
 		<data>
-		wvKDUdM8VZ6GMtctrYGoykF2kB8=
+		e7HKLZmaGSYyTNkO52NU73npXW8=
 		</data>
 		<key>Headers/OPPCheckoutTheme.h</key>
 		<data>
@@ -112,6 +112,10 @@
 		<data>
 		UGpbjGYiHiQU/Q26EaSYTAJX+2Q=
 		</data>
+		<key>Headers/OPPPaymentSelectionProtocol.h</key>
+		<data>
+		wQqIgICD/EwV+OnomVVQk8DX+2M=
+		</data>
 		<key>Headers/OPPRatePayPaymentParams.h</key>
 		<data>
 		fMH5FiRNAMJibevcMDN7G2zDXuM=
@@ -144,6 +148,10 @@
 		<data>
 		MxpNCSRywssiLCGuOUqnuHGffMU=
 		</data>
+		<key>Headers/OPPViewController.h</key>
+		<data>
+		M9WmHZmvIz/rTcoKQMuCGSQ1OTg=
+		</data>
 		<key>Headers/OPPVirtualAccount.h</key>
 		<data>
 		lJ7dIOqideje7rSK1MSwf333Osg=
@@ -170,15 +178,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		cF/pQcd/hrCQWsWvcKx29hUZdhs=
+		8/hvsid4ddS4Cfvtf113dbH+DvM=
 		</data>
 		<key>Modules/OPPWAMobile.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		JJq+hKPJp1+GKvPlkDP1ib5rsO4=
+		62u6LCXn4gCJIkcabHZjrM+q5Kc=
 		</data>
 		<key>Modules/OPPWAMobile.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		UD/tnBVkb65tiAPXsMFUttwm0R4=
+		mYt2Bu50QY9nvMbccdqgOzeDGac=
 		</data>
 		<key>Modules/OPPWAMobile.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -198,7 +206,7 @@
 		</data>
 		<key>Modules/OPPWAMobile.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		KtAIKiNLLakMJ8IcQ5CODwZJiaE=
+		vQNPXhlmoh0BdSGF62mKOwY90aE=
 		</data>
 		<key>Modules/OPPWAMobile.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -218,7 +226,7 @@
 		</data>
 		<key>Modules/OPPWAMobile.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		v4+RM8KT5E6SeTEYV67vTDPr0LM=
+		9jw7t76XfQrGJ/wWvFLAwssTglg=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -226,7 +234,7 @@
 		</data>
 		<key>OPPWAMobile-Resources.bundle/Info.plist</key>
 		<data>
-		/GOugPdjlhK9Ws6mOR0IVcJ2x1k=
+		/8DUn7lG292yjcn3Fy2qqxXqaUA=
 		</data>
 		<key>OPPWAMobile-Resources.bundle/Klarna.json</key>
 		<data>
@@ -348,6 +356,10 @@
 		<data>
 		saDDNnm8QEoMVKv5ZiL/vjIJS8s=
 		</data>
+		<key>OPPWAMobile-Resources.bundle/OPPPaymentSelectionViewController.nib</key>
+		<data>
+		6mqkgtMO/P+XBmnZlgVjo7gd+H8=
+		</data>
 		<key>OPPWAMobile-Resources.bundle/OPPRatePayDetailsViewController.nib</key>
 		<data>
 		OhVVBm21C2jHrVIYGYRJROkza6I=
@@ -382,7 +394,7 @@
 		</data>
 		<key>OPPWAMobile-Resources.bundle/_CodeSignature/CodeDirectory</key>
 		<data>
-		mZnIiW4OnmHjKXyx6XjniOEhVLw=
+		PRQb+VhuekhCVMQpFTquPjFL+RI=
 		</data>
 		<key>OPPWAMobile-Resources.bundle/_CodeSignature/CodeRequirements</key>
 		<data>
@@ -390,11 +402,11 @@
 		</data>
 		<key>OPPWAMobile-Resources.bundle/_CodeSignature/CodeRequirements-1</key>
 		<data>
-		BpuWszjRSeRXwrH/xRvEOLg9XiE=
+		lhr555mL66uZ1B0vj8z0YwNmPdQ=
 		</data>
 		<key>OPPWAMobile-Resources.bundle/_CodeSignature/CodeResources</key>
 		<data>
-		YUd8nNNfY5xOi1ph+G+AOL+r1x8=
+		OurYRJai2nMCdazEHrItcgab4A0=
 		</data>
 		<key>OPPWAMobile-Resources.bundle/_CodeSignature/CodeSignature</key>
 		<data>
@@ -1139,7 +1151,7 @@
 		</data>
 		<key>OPPWAMobile-Resources.bundle/version.plist</key>
 		<data>
-		BsOaxjlnx6DbTa9FZxVoG/HTMCE=
+		qxswp49hr6pdQ7iF9Xvq7yrsuec=
 		</data>
 		<key>OPPWAMobile-Resources.bundle/visa.png</key>
 		<data>
@@ -1296,7 +1308,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7EGXGDlRNfBnZ3jxVgaVvQYr5IbS7f+FUd6IGPXkL1M=
+			c6vrCCIWaZ6DcByQ9UrSeUWQNvAlCiroDmychCIxRuE=
 			</data>
 		</dict>
 		<key>Headers/OPPCheckoutTheme.h</key>
@@ -1390,6 +1402,13 @@
 			Qq3/2Uk8gLRPydfmdNUk+VDOzpsCtSx6yjSs6k3E/4o=
 			</data>
 		</dict>
+		<key>Headers/OPPPaymentSelectionProtocol.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			E0ZlG8UcA8kGDs8dXAOzBOqLr70dq2jCh5e6Sff9FVo=
+			</data>
+		</dict>
 		<key>Headers/OPPRatePayPaymentParams.h</key>
 		<dict>
 			<key>hash2</key>
@@ -1446,6 +1465,13 @@
 			hNEPKhmlM1C//eAGImt2RoGEXyKkLtz9dETpLjaHDFc=
 			</data>
 		</dict>
+		<key>Headers/OPPViewController.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			PoMXpU0g0tx8bdaolCeDkLWJlKKxoOLn/vMIO4+JiVw=
+			</data>
+		</dict>
 		<key>Headers/OPPVirtualAccount.h</key>
 		<dict>
 			<key>hash2</key>
@@ -1492,14 +1518,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ppdy4ebDFF+opOVLOcJ/mTCWyLc9Wqth3BRkHrn03zw=
+			ZAW1EvdFb/e/YYYPAUoAHOOWuiaCmZY2IFMl1KGYF7Q=
 			</data>
 		</dict>
 		<key>Modules/OPPWAMobile.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			YcO9I+Y6afyav6Chr9elOVAzU+hLm69x3JtXL8f/Fms=
+			swZIV+UPpFhaYrZ9IGu8PAUSRS6lRFvkBJcWC2hHImY=
 			</data>
 		</dict>
 		<key>Modules/OPPWAMobile.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
@@ -1534,7 +1560,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Uph1/CKvVNTJ3hVKkf1MyjDJMCViTu4d+RVeB4qL4dU=
+			+lg1GAIjtJB5GHuR66Uc2pUZQG7ZdTq/MvbzNXHSt+Y=
 			</data>
 		</dict>
 		<key>Modules/OPPWAMobile.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
@@ -1569,7 +1595,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			xS2OocitsPgG732cIASkg2grXyX8+MGFxjL5u7iA1Ik=
+			ywSFwaxNudOnHd7M7Syik5UKCkqi6B4eXy+cLsgoNiQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -1583,7 +1609,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			tI/nSOGCOLNxd361+/DybhaZvXv25qCSdEf3GI0sBko=
+			H1GD2F4zkBO5sOj94zw+/rMn0guijyEHl2NRajY5Qrg=
 			</data>
 		</dict>
 		<key>OPPWAMobile-Resources.bundle/Klarna.json</key>
@@ -1796,6 +1822,13 @@
 			Nn8tsn3Op3Zxou6A3ETHJYX+7B4bgPUHIhsQ5G9teVU=
 			</data>
 		</dict>
+		<key>OPPWAMobile-Resources.bundle/OPPPaymentSelectionViewController.nib</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			WIsj41M6t67/NNJEs0ELbawNpphfEPPSmZJ+H13K5mw=
+			</data>
+		</dict>
 		<key>OPPWAMobile-Resources.bundle/OPPRatePayDetailsViewController.nib</key>
 		<dict>
 			<key>hash2</key>
@@ -1856,7 +1889,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			UY1uG9mSkeVsht2o1fzYXPVQXrr51UvDm+RaRlMKeUQ=
+			2+gwIB3sZOn2HVYtT/fOL7sHKsZ7b4ZSwNY54kCGELo=
 			</data>
 		</dict>
 		<key>OPPWAMobile-Resources.bundle/_CodeSignature/CodeRequirements</key>
@@ -1870,14 +1903,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Gkk0HgdL0JDueSVktKP2RgHs/Efd1vreJ6ikJVB5n4g=
+			e+tj0CahtAvd6Gtt+LpsF39NzTChUBJB/mjkdrDKY3k=
 			</data>
 		</dict>
 		<key>OPPWAMobile-Resources.bundle/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5MCOrYW3O1SE0aIsnzyqhyrUNoYHWioRBA7OU7UiPgs=
+			gXoR1d1jq0+Ns32igOQps9mavyIc9+1Dwb+azh3PhEk=
 			</data>
 		</dict>
 		<key>OPPWAMobile-Resources.bundle/_CodeSignature/CodeSignature</key>
@@ -2958,7 +2991,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			xq/cW6HTUpTqNiiEN0La8Xd6vfAXE0vMt8hjSkqwocs=
+			D8yTeK8H0XiB18266Lz61hrP5WvLtGsaGH5SIEsCzZo=
 			</data>
 		</dict>
 		<key>OPPWAMobile-Resources.bundle/visa.png</key>

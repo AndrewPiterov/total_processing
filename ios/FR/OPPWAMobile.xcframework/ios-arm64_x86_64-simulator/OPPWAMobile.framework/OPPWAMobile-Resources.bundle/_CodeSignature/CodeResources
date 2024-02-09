@@ -124,6 +124,10 @@
 		<data>
 		saDDNnm8QEoMVKv5ZiL/vjIJS8s=
 		</data>
+		<key>OPPPaymentSelectionViewController.nib</key>
+		<data>
+		6mqkgtMO/P+XBmnZlgVjo7gd+H8=
+		</data>
 		<key>OPPRatePayDetailsViewController.nib</key>
 		<data>
 		OhVVBm21C2jHrVIYGYRJROkza6I=
@@ -895,7 +899,7 @@
 		</data>
 		<key>version.plist</key>
 		<data>
-		BsOaxjlnx6DbTa9FZxVoG/HTMCE=
+		qxswp49hr6pdQ7iF9Xvq7yrsuec=
 		</data>
 		<key>visa.png</key>
 		<data>
@@ -1285,6 +1289,17 @@
 			<key>hash2</key>
 			<data>
 			Nn8tsn3Op3Zxou6A3ETHJYX+7B4bgPUHIhsQ5G9teVU=
+			</data>
+		</dict>
+		<key>OPPPaymentSelectionViewController.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			6mqkgtMO/P+XBmnZlgVjo7gd+H8=
+			</data>
+			<key>hash2</key>
+			<data>
+			WIsj41M6t67/NNJEs0ELbawNpphfEPPSmZJ+H13K5mw=
 			</data>
 		</dict>
 		<key>OPPRatePayDetailsViewController.nib</key>
@@ -3018,11 +3033,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			BsOaxjlnx6DbTa9FZxVoG/HTMCE=
+			qxswp49hr6pdQ7iF9Xvq7yrsuec=
 			</data>
 			<key>hash2</key>
 			<data>
-			xq/cW6HTUpTqNiiEN0La8Xd6vfAXE0vMt8hjSkqwocs=
+			D8yTeK8H0XiB18266Lz61hrP5WvLtGsaGH5SIEsCzZo=
 			</data>
 		</dict>
 		<key>visa.png</key>

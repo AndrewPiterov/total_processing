@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 #import <PassKit/PassKit.h>
 #import "OPPBillingAddress.h"
+#import "OPPViewController.h"
 @class OPPCheckoutTheme;
 @class OPPSecurityPolicy;
 @class OPPThreeDSConfig;
@@ -230,6 +231,11 @@ A flag that Disable's Card expiry date validation. Default is 'No'.
  Property which holds MBWay brand specific configuration.
  */
 @property (nonatomic, copy) OPPMBWayConfig *mbwayConfig;
+
+/**
+ Configure view controllers for UI Component integration.
+ */
+- (BOOL)customController:(OPPViewController)controllerType withUiController:(nonnull UIViewController *)controller;
 
 @end
 NS_ASSUME_NONNULL_END
