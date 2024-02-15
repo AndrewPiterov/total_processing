@@ -6,6 +6,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:total_processing/total_processing.dart';
 import 'package:http/http.dart' as http;
 
+import 'custom_ui_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -32,41 +34,63 @@ class ExamplePage extends StatefulWidget {
 class _ExamplePageState extends State<ExamplePage> {
   final _totalProcessingPlugin = TotalProcessingPlugin();
   ValueNotifier isLoadingNotifier = ValueNotifier(false);
+  ValueNotifier isLoadingCustomUINotifier = ValueNotifier(false);
 
-  _showSnacbar(String message) {
+  _showSnackbar(String message) {
     final snackBar = SnackBar(
       content: Text(message),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  _onTestCheckout() async {
-    isLoadingNotifier.value = true;
+  Future<String?> getCheckoutIdFromMerchantServer() async {
     // TODO: use your own merchant server
     // https://totalprocessing.docs.oppwa.com/tutorials/mobile-sdk/integration/server
     final response = await http
         .get(Uri.parse('https://velopos.kakzaki.my.id/api/checkouttrial'));
 
     if (response.statusCode == 200) {
-      isLoadingNotifier.value = false;
-
       final responseBody = jsonDecode(response.body);
       final checkoutId = responseBody['id'];
 
       log("$responseBody", name: "responseBody");
 
-      if (checkoutId != null) {
-        _totalProcessingPlugin.startCheckout(
-          checkoutId: checkoutId.toString(),
-          settings: TotalProcessingCheckoutSettings(
-              paymentBrands: ["VISA", "DIRECTDEBIT_SEPA"],
-              shopperResultURL:
-                  "com.companyname.appname.payments://result"), // android version no longer use it
-        );
-      }
+      return checkoutId;
     } else {
-      isLoadingNotifier.value = false;
-      _showSnacbar('Failed to load checkout ID');
+      _showSnackbar('Failed to load checkout ID');
+    }
+    return null;
+  }
+
+  _onTestCheckout() async {
+    isLoadingNotifier.value = true;
+    final checkoutId = await getCheckoutIdFromMerchantServer();
+    isLoadingNotifier.value = false;
+
+    if (checkoutId != null) {
+      _totalProcessingPlugin.startCheckout(
+        checkoutId: checkoutId.toString(),
+        settings: TotalProcessingCheckoutSettings(
+            paymentBrands: ["VISA", "DIRECTDEBIT_SEPA"],
+            shopperResultURL:
+                "com.companyname.appname.payments://result"), // android version no longer use it
+      );
+    }
+  }
+
+  _onGotoCustomUIPage() async {
+    isLoadingCustomUINotifier.value = true;
+    final checkoutId = await getCheckoutIdFromMerchantServer();
+    isLoadingCustomUINotifier.value = false;
+
+    if (checkoutId != null) {
+      if (!context.mounted) return;
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: ((context) => CustomUIPage(
+                    checkoutId: checkoutId,
+                  ))));
     }
   }
 
@@ -81,15 +105,15 @@ class _ExamplePageState extends State<ExamplePage> {
 
         if (event != null) {
           if (event['isErrored'] == true) {
-            return _showSnacbar('${event['paymentError']['errorMessage']}');
+            return _showSnackbar('${event['paymentError']['errorMessage']}');
           }
 
           if (event['isCanceled'] == true) {
-            return _showSnacbar('Payment is canceled');
+            return _showSnackbar('Payment is canceled');
           }
 
           if (event['transaction'] != null) {
-            _showSnacbar('Payment is Successful');
+            _showSnackbar('Payment is Successful');
             log("${event['transaction']}", name: "transaction");
           }
 
@@ -114,16 +138,36 @@ class _ExamplePageState extends State<ExamplePage> {
         title: const Text('Plugin example app'),
       ),
       body: Center(
-        child: ValueListenableBuilder(
-          valueListenable: isLoadingNotifier,
-          builder: (context, value, child) {
-            return value == true
-                ? const CircularProgressIndicator()
-                : ElevatedButton(
-                    onPressed: _onTestCheckout,
-                    child: const Text('TEST CHECKOUT'),
-                  );
-          },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ValueListenableBuilder(
+              valueListenable: isLoadingNotifier,
+              builder: (context, value, child) {
+                return value == true
+                    ? const CircularProgressIndicator()
+                    : ElevatedButton(
+                        onPressed: _onTestCheckout,
+                        child: const Text('TEST CHECKOUT'),
+                      );
+              },
+            ),
+            const SizedBox(
+              height: 24,
+            ),
+            ValueListenableBuilder(
+              valueListenable: isLoadingCustomUINotifier,
+              builder: (context, value, child) {
+                return value == true
+                    ? const CircularProgressIndicator()
+                    : ElevatedButton(
+                        onPressed: _onGotoCustomUIPage,
+                        child: const Text('CUSTOM UI PAGE'),
+                      );
+              },
+            )
+          ],
         ),
       ),
     );
