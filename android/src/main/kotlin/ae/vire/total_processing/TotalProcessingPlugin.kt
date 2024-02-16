@@ -11,10 +11,6 @@ import com.oppwa.mobile.connect.checkout.meta.CheckoutSettings
 import com.oppwa.mobile.connect.exception.PaymentError
 import com.oppwa.mobile.connect.exception.PaymentException
 import com.oppwa.mobile.connect.payment.card.CardPaymentParams
-import com.oppwa.mobile.connect.provider.Connect
-import com.oppwa.mobile.connect.provider.ITransactionListener
-import com.oppwa.mobile.connect.provider.OppPaymentProvider
-import com.oppwa.mobile.connect.provider.Transaction
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -24,10 +20,10 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
+import com.oppwa.mobile.connect.provider.*
 
 /** TotalProcessingPlugin */
-class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.ActivityResultListener,
-  ITransactionListener {
+class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.ActivityResultListener{
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
@@ -80,6 +76,17 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Pl
         val checkoutID: String = call.argument<String>("checkoutId")!!
         val cardHolder: String = call.argument<String>("cardHolder")!!
         val cardNumber: String = call.argument<String>("cardNumber")!!
+        if (!CardPaymentParams.isNumberValid(cardNumber,true)) {
+          val item: MutableMap<String, Any?> = HashMap()
+          item["isErrored"] = true
+          val paymentError: MutableMap<String, Any?> = HashMap()
+          paymentError["errorCode"] = "cardNumber"
+          paymentError["errorInfo"] = "Invalid card number"
+          paymentError["errorMessage"] = "Invalid card number"
+          item["paymentError"] = paymentError
+          handleCheckoutResultSink?.success(item)
+          return;
+        }
         val expiryMonth: String = call.argument<String>("expiryMonth")!!
         val expiryYear: String = call.argument<String>("expiryYear")!!
         val cvc: String = call.argument<String>("cvc")!!
@@ -206,52 +213,18 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Pl
       .build()
   }
 
-  override fun transactionCompleted(p0: Transaction) {
-    val item: MutableMap<String, Any?> = HashMap()
-    item["isErrored"] = false
-    val transaction: MutableMap<String, Any?> = HashMap()
-    transaction["transactionType"] = p0.transactionType.toString()
-    val paymentParams: MutableMap<String, Any?> = HashMap()
-    paymentParams["checkoutId"] = p0.paymentParams.checkoutId
-    paymentParams["paymentBrand"] = p0.paymentParams.paymentBrand
-    paymentParams["shopperResultUrl"] = p0.paymentParams.shopperResultUrl
-    transaction["paymentParams"] = paymentParams
-    transaction["brandSpecificInfo"] = p0.brandSpecificInfo.toString()
-    transaction["redirectUrl"] = p0.redirectUrl.toString()
-    transaction["threeDS2Info"] = p0.threeDS2Info.toString()
-    transaction["threeDS2MethodRedirectUrl"] = p0.threeDS2MethodRedirectUrl.toString()
-    transaction["yooKassaInfo"] = p0.yooKassaInfo.toString()
-    item["transaction"] = transaction
-    customUIResultSink?.success(item)
-  }
-
-  override fun transactionFailed(p0: Transaction, p1: PaymentError) {
-    val item: MutableMap<String, Any?> = HashMap()
-    item["isErrored"] = true
-    val paymentError: MutableMap<String, Any?> = HashMap()
-    paymentError["errorCode"] = p1.errorCode.toString()
-    paymentError["errorInfo"] = p1.errorInfo
-    paymentError["errorMessage"] = p1.errorMessage
-    item["paymentError"] = paymentError
-    val transaction: MutableMap<String, Any?> = HashMap()
-    transaction["transactionType"] = p0.transactionType.toString()
-    val paymentParams: MutableMap<String, Any?> = HashMap()
-    paymentParams["checkoutId"] = p0.paymentParams.checkoutId
-    paymentParams["paymentBrand"] = p0.paymentParams.paymentBrand
-    paymentParams["shopperResultUrl"] = p0.paymentParams.shopperResultUrl
-    transaction["paymentParams"] = paymentParams
-    transaction["brandSpecificInfo"] = p0.brandSpecificInfo.toString()
-    transaction["redirectUrl"] = p0.redirectUrl.toString()
-    transaction["threeDS2Info"] = p0.threeDS2Info.toString()
-    transaction["threeDS2MethodRedirectUrl"] = p0.threeDS2MethodRedirectUrl.toString()
-    transaction["yooKassaInfo"] = p0.yooKassaInfo.toString()
-    item["transaction"] = transaction
-    customUIResultSink?.success(item)
-  }
 
   private fun requestCheckoutInfo(checkoutId: String) {
     try {
-      paymentProvider!!.requestCheckoutInfo(checkoutId, this)
+      paymentProvider!!.requestCheckoutInfo(checkoutId, object : ITransactionListener {
+        override fun transactionCompleted(p0: Transaction) {
+          // Handle transaction completion if needed
+        }
+
+        override fun transactionFailed(p0: Transaction, p1: PaymentError) {
+          // Handle transaction failure if needed
+        }
+      })
     } catch (e: PaymentException) {
       e.message?.let {
         val item: MutableMap<String, Any?> = HashMap()
@@ -282,7 +255,54 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Pl
       paymentParams.shopperResultUrl = shopperResultUrl
       val transaction = Transaction(paymentParams)
 
-      paymentProvider!!.submitTransaction(transaction, this)
+      paymentProvider!!.submitTransaction(transaction, object : ITransactionListener {
+        override fun transactionCompleted(p0: Transaction) {
+          val item: MutableMap<String, Any?> = HashMap()
+          item["isErrored"] = false
+          val transaction: MutableMap<String, Any?> = HashMap()
+          transaction["transactionType"] = p0.transactionType.toString()
+          val paymentParams: MutableMap<String, Any?> = HashMap()
+          paymentParams["checkoutId"] = p0.paymentParams.checkoutId
+          paymentParams["paymentBrand"] = p0.paymentParams.paymentBrand
+          paymentParams["shopperResultUrl"] = p0.paymentParams.shopperResultUrl
+          transaction["paymentParams"] = paymentParams
+          transaction["brandSpecificInfo"] = p0.brandSpecificInfo.toString()
+          transaction["redirectUrl"] = p0.redirectUrl.toString()
+          transaction["threeDS2Info"] = p0.threeDS2Info.toString()
+          transaction["threeDS2MethodRedirectUrl"] = p0.threeDS2MethodRedirectUrl.toString()
+          transaction["yooKassaInfo"] = p0.yooKassaInfo.toString()
+          item["transaction"] = transaction
+          activity.runOnUiThread {
+            customUIResultSink?.success(item)
+          }
+        }
+
+        override fun transactionFailed(p0: Transaction, p1: PaymentError) {
+          val item: MutableMap<String, Any?> = HashMap()
+          item["isErrored"] = true
+          val paymentError: MutableMap<String, Any?> = HashMap()
+          paymentError["errorCode"] = p1.errorCode.toString()
+          paymentError["errorInfo"] = p1.errorInfo
+          paymentError["errorMessage"] = p1.errorMessage
+          item["paymentError"] = paymentError
+          val transaction: MutableMap<String, Any?> = HashMap()
+          transaction["transactionType"] = p0.transactionType.toString()
+          val paymentParams: MutableMap<String, Any?> = HashMap()
+          paymentParams["checkoutId"] = p0.paymentParams.checkoutId
+          paymentParams["paymentBrand"] = p0.paymentParams.paymentBrand
+          paymentParams["shopperResultUrl"] = p0.paymentParams.shopperResultUrl
+          transaction["paymentParams"] = paymentParams
+          transaction["brandSpecificInfo"] = p0.brandSpecificInfo.toString()
+          transaction["redirectUrl"] = p0.redirectUrl.toString()
+          transaction["threeDS2Info"] = p0.threeDS2Info.toString()
+          transaction["threeDS2MethodRedirectUrl"] = p0.threeDS2MethodRedirectUrl.toString()
+          transaction["yooKassaInfo"] = p0.yooKassaInfo.toString()
+          item["transaction"] = transaction
+          activity.runOnUiThread {
+            customUIResultSink?.success(item)
+          }
+        }
+      })
     } catch (e: PaymentException) {
       val item: MutableMap<String, Any?> = HashMap()
       item["isErrored"] = true
@@ -291,7 +311,9 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Pl
       paymentError["errorInfo"] = e.error.errorInfo
       paymentError["errorMessage"] = e.error.errorMessage
       item["paymentError"] = paymentError
-      customUIResultSink?.success(item)
+      activity.runOnUiThread {
+        customUIResultSink?.success(item)
+      }
     }
   }
 

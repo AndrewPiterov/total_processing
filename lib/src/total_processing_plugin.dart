@@ -29,8 +29,8 @@ class TotalProcessingPlugin {
     required String cardBrand,
     required String shopperResultUrl,
   }) {
-    methodChannel.invokeMethod('startCheckout', {
-      'checkoutID': checkoutID,
+    methodChannel.invokeMethod('customUIPay', {
+      'checkoutId': checkoutID,
       'cardHolder': cardHolder,
       'cardNumber': cardNumber,
       'expiryMonth': expiryMonth,
