@@ -15,7 +15,6 @@ class CustomUIPage extends StatefulWidget {
 
 class _CustomUIPageState extends State<CustomUIPage> {
   final _totalProcessingPlugin = TotalProcessingPlugin();
-  ValueNotifier<bool> isLoadingNotifier = ValueNotifier(false);
   TextEditingController cardHolderController = TextEditingController();
   TextEditingController cardNumberController = TextEditingController();
   TextEditingController expiryController = TextEditingController();
@@ -43,17 +42,20 @@ class _CustomUIPageState extends State<CustomUIPage> {
     }
     final expiryMonth = expiryParts[0];
     final expiryYear = expiryParts[1];
-    isLoadingNotifier.value = true;
-    _totalProcessingPlugin.customUIPay(
-        checkoutID: widget.checkoutId,
-        cardHolder: cardHolderController.text,
-        cardNumber: cardNumberController.text
-            .replaceAll(' ', ''), // Remove spaces from card number
-        expiryMonth: expiryMonth,
-        expiryYear: expiryYear,
-        cvc: cvcController.text,
-        cardBrand: cardBrand,
-        shopperResultUrl: shopperResultUrl);
+    try {
+      _totalProcessingPlugin.customUIPay(
+          checkoutID: widget.checkoutId,
+          cardHolder: cardHolderController.text,
+          cardNumber: cardNumberController.text.replaceAll(' ', ''),
+          // Remove spaces from card number
+          expiryMonth: expiryMonth,
+          expiryYear: expiryYear,
+          cvc: cvcController.text,
+          cardBrand: cardBrand,
+          shopperResultUrl: shopperResultUrl);
+    } catch (e) {
+      _showSnackbar('$e');
+    }
   }
 
   StreamSubscription? _customUIResultStream;
@@ -66,7 +68,6 @@ class _CustomUIPageState extends State<CustomUIPage> {
         log("$event", name: "customUIResultStream");
 
         if (event != null) {
-          isLoadingNotifier.value = false;
           if (event['isErrored'] == true) {
             return _showSnackbar('${event['paymentError']['errorMessage']}');
           }
@@ -142,16 +143,9 @@ class _CustomUIPageState extends State<CustomUIPage> {
               ),
               const SizedBox(height: 20),
               Center(
-                child: ValueListenableBuilder(
-                  valueListenable: isLoadingNotifier,
-                  builder: (context, value, child) {
-                    return value
-                        ? const CircularProgressIndicator()
-                        : ElevatedButton(
-                            onPressed: _onTestCheckout,
-                            child: const Text('Pay'),
-                          );
-                  },
+                child: ElevatedButton(
+                  onPressed: _onTestCheckout,
+                  child: const Text('Pay'),
                 ),
               ),
             ],
