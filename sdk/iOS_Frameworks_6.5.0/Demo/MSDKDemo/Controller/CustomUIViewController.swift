@@ -1,6 +1,6 @@
-import UIKit
-import SafariServices
 import OPPWAMobile_MSA
+import SafariServices
+import UIKit
 
 enum CardParamsError: Error {
     case invalidParam(String)
@@ -30,7 +30,7 @@ class CustomUIViewController: RootViewController, SFSafariViewControllerDelegate
         self.expiryYearTextField.text = Config.cardExpiryYear
         self.cvvTextField.text = Config.cardCVV
         
-        self.provider = OPPPaymentProvider.init(mode: .test)
+        self.provider = OPPPaymentProvider(mode: .test)
         self.provider?.threeDSEventListener = self
     }
     
@@ -39,7 +39,7 @@ class CustomUIViewController: RootViewController, SFSafariViewControllerDelegate
     @IBAction func payButtonAction(_ sender: Any) {
         do {
             try self.validateFields()
-        } catch CardParamsError.invalidParam(let reason) {
+        } catch let CardParamsError.invalidParam(reason) {
             Utils.showResult(presenter: self, message: reason)
             return
         } catch {
@@ -49,7 +49,7 @@ class CustomUIViewController: RootViewController, SFSafariViewControllerDelegate
         
         self.view.endEditing(true)
         self.processingView.startAnimating()
-        Request.requestCheckoutID(amount: Config.amount, currency: Config.currency) { (checkoutID) in
+        Request.requestCheckoutID(amount: Config.amount, currency: Config.currency) { checkoutID in
             DispatchQueue.main.async {
                 guard let checkoutID = checkoutID else {
                     self.processingView.stopAnimating()
@@ -62,7 +62,7 @@ class CustomUIViewController: RootViewController, SFSafariViewControllerDelegate
                     return
                 }
                 
-                self.provider!.submitTransaction(transaction, completionHandler: { (transaction, error) in
+                self.provider!.submitTransaction(transaction, completionHandler: { transaction, error in
                     DispatchQueue.main.async {
                         self.processingView.stopAnimating()
                         self.handleTransactionSubmission(transaction: transaction, error: error)
@@ -76,9 +76,9 @@ class CustomUIViewController: RootViewController, SFSafariViewControllerDelegate
     
     func createTransaction(checkoutID: String) -> OPPTransaction? {
         do {
-            let params = try OPPCardPaymentParams.init(checkoutID: checkoutID, paymentBrand: Config.cardBrand, holder: self.holderTextField.text!, number: self.numberTextField.text!, expiryMonth: self.expiryMonthTextField.text!, expiryYear: self.expiryYearTextField.text!, cvv: self.cvvTextField.text!)
+            let params = try OPPCardPaymentParams(checkoutID: checkoutID, paymentBrand: Config.cardBrand, holder: self.holderTextField.text!, number: self.numberTextField.text!, expiryMonth: self.expiryMonthTextField.text!, expiryYear: self.expiryYearTextField.text!, cvv: self.cvvTextField.text!)
             params.shopperResultURL = Config.urlScheme + "://payment"
-            return OPPTransaction.init(paymentParams: params)
+            return OPPTransaction(paymentParams: params)
         } catch let error as NSError {
             Utils.showResult(presenter: self, message: error.localizedDescription)
             return nil
@@ -87,8 +87,8 @@ class CustomUIViewController: RootViewController, SFSafariViewControllerDelegate
     
     func presenterURL(url: URL) {
         self.safariVC = SFSafariViewController(url: url)
-        self.safariVC?.delegate = self;
-        self.present(safariVC!, animated: true, completion: nil)
+        self.safariVC?.delegate = self
+        self.present(self.safariVC!, animated: true, completion: nil)
     }
     
     override func requestPaymentStatus() {
@@ -103,7 +103,7 @@ class CustomUIViewController: RootViewController, SFSafariViewControllerDelegate
         self.transaction = nil
         
         self.processingView.startAnimating()
-        self.provider!.requestCheckoutInfo(withCheckoutID: checkoutID) { (checkoutInfo, error) in
+        self.provider!.requestCheckoutInfo(withCheckoutID: checkoutID) { checkoutInfo, error in
             DispatchQueue.main.async {
                 guard let resourcePath = checkoutInfo?.resourcePath else {
                     self.processingView.stopAnimating()
@@ -111,21 +111,21 @@ class CustomUIViewController: RootViewController, SFSafariViewControllerDelegate
                     return
                 }
                 
-                Request.requestPaymentStatus(resourcePath: resourcePath) { (paymentStatusResponse, error) in
+                Request.requestPaymentStatus(resourcePath: resourcePath) { paymentStatusResponse, error in
                     DispatchQueue.main.async {
                         self.processingView.stopAnimating()
                         var message = ""
                         if OPPMerchantServer.isSuccessful(response: paymentStatusResponse) || OPPMerchantServer.isPending(response: paymentStatusResponse) {
                             message = (paymentStatusResponse?.resultCode ?? "") + (paymentStatusResponse?.resultDescription ?? "")
                         } else {
-                            if (error != nil) {
+                            if error != nil {
                                 message = error!.localizedDescription
                             } else {
                                 message = paymentStatusResponse!.resultCode + " " + paymentStatusResponse!.resultDescription
                             }
                         }
                         
-                        if ((paymentStatusResponse?.resultDetailsCardholderInfo) != nil  && (paymentStatusResponse?.resultDetailsCardholderInfo.count)! > 0) {
+                        if (paymentStatusResponse?.resultDetailsCardholderInfo) != nil && (paymentStatusResponse?.resultDetailsCardholderInfo.count)! > 0 {
                             message = message + "\n3ds2 transaction returned cardHolderInfo:" + paymentStatusResponse!.resultDetailsCardholderInfo
                         }
                         Utils.showResult(presenter: self, message: message)
