@@ -36,6 +36,9 @@ class _ExamplePageState extends State<ExamplePage> {
   ValueNotifier isLoadingNotifier = ValueNotifier(false);
   ValueNotifier isLoadingCustomUINotifier = ValueNotifier(false);
 
+  // TODO: use your own merchant server
+  String API_URL = '';
+
   _showSnackbar(String message) {
     final snackBar = SnackBar(
       content: Text(message),
@@ -44,10 +47,8 @@ class _ExamplePageState extends State<ExamplePage> {
   }
 
   Future<String?> getCheckoutIdFromMerchantServer() async {
-    // TODO: use your own merchant server
     // https://totalprocessing.docs.oppwa.com/tutorials/mobile-sdk/integration/server
-    final response = await http
-        .get(Uri.parse('https://velopos.kakzaki.my.id/api/checkouttrial'));
+    final response = await http.get(Uri.parse(API_URL));
 
     if (response.statusCode == 200) {
       final responseBody = jsonDecode(response.body);
