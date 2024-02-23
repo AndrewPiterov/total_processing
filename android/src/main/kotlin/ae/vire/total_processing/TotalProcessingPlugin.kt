@@ -31,7 +31,7 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Pl
   private lateinit var channel : MethodChannel
   private lateinit var activity: Activity
 
-  private val providerMode= Connect.ProviderMode.TEST
+  private val providerMode= Connect.ProviderMode.LIVE
 
   private var paymentProvider: OppPaymentProvider? = null
 

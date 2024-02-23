@@ -36,7 +36,7 @@ class _ExamplePageState extends State<ExamplePage> {
   ValueNotifier isLoadingNotifier = ValueNotifier(false);
   ValueNotifier isLoadingCustomUINotifier = ValueNotifier(false);
 
-  // TODO: use your own merchant server
+  // TODO: use your own production merchant server
   String API_URL = '';
 
   _showSnackbar(String message) {
@@ -118,7 +118,7 @@ class _ExamplePageState extends State<ExamplePage> {
             log("${event['transaction']}", name: "transaction");
           }
 
-          // TODO: use your own merchant server to get status of the transaction
+          // TODO: use your own production merchant server to get status of the transaction
           // https://totalprocessing.docs.oppwa.com/tutorials/mobile-sdk/integration/server
         }
       });
@@ -136,7 +136,7 @@ class _ExamplePageState extends State<ExamplePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Plugin example app'),
+        title: const Text('Production version app'),
       ),
       body: Center(
         child: Column(

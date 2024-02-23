@@ -119,7 +119,7 @@ public class TotalProcessingPlugin: NSObject, FlutterPlugin, FlutterStreamHandle
         }
     }
 
-    let provider = OPPPaymentProvider(mode: OPPProviderMode.test)
+    let provider = OPPPaymentProvider(mode: OPPProviderMode.live)
     let checkoutSettings = OPPCheckoutSettings()
     
     func createTransaction(checkoutID: String, cardHolder: String, cardNumber: String, expiryMonth: String, expiryYear: String, cvc: String, cardBrand: String, shopperResultURL: String) -> OPPTransaction? {
