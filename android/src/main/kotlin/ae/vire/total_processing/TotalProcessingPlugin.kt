@@ -1,3 +1,5 @@
+@file:Suppress("NAME_SHADOWING")
+
 package ae.vire.total_processing
 
 import android.annotation.SuppressLint
@@ -22,6 +24,7 @@ import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
 import com.oppwa.mobile.connect.provider.*
 
+
 /** TotalProcessingPlugin */
 class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.ActivityResultListener{
   /// The MethodChannel that will the communication between Flutter and native Android
@@ -35,7 +38,8 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Pl
 
   private var paymentProvider: OppPaymentProvider? = null
 
-  private val CHECKOUT_REQUEST_CODE = 123
+
+  private val checkoutRequestCode = 123
 
   private var handleCheckoutResultEvent: EventChannel? = null
   private var handleCheckoutResultSink : EventChannel.EventSink? = null
@@ -85,7 +89,7 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Pl
           paymentError["errorMessage"] = "Invalid card number"
           item["paymentError"] = paymentError
           handleCheckoutResultSink?.success(item)
-          return;
+          return
         }
         val expiryMonth: String = call.argument<String>("expiryMonth")!!
         val expiryYear: String = call.argument<String>("expiryYear")!!
@@ -123,7 +127,7 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Pl
         )
       }
     Log.i("startActivity", "startActivity")
-    activity.startActivityForResult(var3,CHECKOUT_REQUEST_CODE)
+    activity.startActivityForResult(var3,checkoutRequestCode)
   }
 
 
@@ -190,7 +194,7 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Pl
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
-    if (requestCode == CHECKOUT_REQUEST_CODE) {
+    if (requestCode == checkoutRequestCode) {
       // Ensure the result is for the checkout request
       if (data != null) {
         val checkoutResult = parseCheckoutResult(resultCode,data)
@@ -214,30 +218,30 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Pl
   }
 
 
-  private fun requestCheckoutInfo(checkoutId: String) {
-    try {
-      paymentProvider!!.requestCheckoutInfo(checkoutId, object : ITransactionListener {
-        override fun transactionCompleted(p0: Transaction) {
-          // Handle transaction completion if needed
-        }
-
-        override fun transactionFailed(p0: Transaction, p1: PaymentError) {
-          // Handle transaction failure if needed
-        }
-      })
-    } catch (e: PaymentException) {
-      e.message?.let {
-        val item: MutableMap<String, Any?> = HashMap()
-        item["isErrored"] = true
-        val paymentError: MutableMap<String, Any?> = HashMap()
-        paymentError["errorCode"] = e.error.errorCode.toString()
-        paymentError["errorInfo"] = e.error.errorInfo
-        paymentError["errorMessage"] = e.error.errorMessage
-        item["paymentError"] = paymentError
-        customUIResultSink?.success(item)
-      }
-    }
-  }
+//  private fun requestCheckoutInfo(checkoutId: String) {
+//    try {
+//      paymentProvider!!.requestCheckoutInfo(checkoutId, object : ITransactionListener {
+//        override fun transactionCompleted(p0: Transaction) {
+//          // Handle transaction completion if needed
+//        }
+//
+//        override fun transactionFailed(p0: Transaction, p1: PaymentError) {
+//          // Handle transaction failure if needed
+//        }
+//      })
+//    } catch (e: PaymentException) {
+//      e.message?.let {
+//        val item: MutableMap<String, Any?> = HashMap()
+//        item["isErrored"] = true
+//        val paymentError: MutableMap<String, Any?> = HashMap()
+//        paymentError["errorCode"] = e.error.errorCode.toString()
+//        paymentError["errorInfo"] = e.error.errorInfo
+//        paymentError["errorMessage"] = e.error.errorMessage
+//        item["paymentError"] = paymentError
+//        customUIResultSink?.success(item)
+//      }
+//    }
+//  }
 
 
   private fun pay(checkoutId: String, cardHolder: String,cardNumber: String,cardExpiryMonth: String,cardExpiryYear: String,cardCVV: String,cardBrand: String,shopperResultUrl: String) {
@@ -303,6 +307,9 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Pl
           }
         }
       })
+
+      paymentProvider!!.setThreeDSWorkflowListener { activity }
+
     } catch (e: PaymentException) {
       val item: MutableMap<String, Any?> = HashMap()
       item["isErrored"] = true
@@ -316,5 +323,19 @@ class TotalProcessingPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Pl
       }
     }
   }
+
+//  val threeDSConfig = OppThreeDSConfig.Builder()
+
+//  private val threeDSWorkflowListener: ThreeDSWorkflowListener = object : ThreeDSWorkflowListener {
+//    override fun onThreeDSChallengeRequired(): Activity {
+//      // provide your Activity
+//      return activity
+//    }
+//
+//    override fun onThreeDSConfigRequired(): OppThreeDSConfig {
+//      // provide your OppThreeDSConfig
+//      return threeDSConfig
+//    }
+//  }
 
 }
