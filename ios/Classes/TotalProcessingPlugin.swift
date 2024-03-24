@@ -2,12 +2,32 @@ import Flutter
 import OPPWAMobile
 import UIKit
 
-public class TotalProcessingPlugin: NSObject, FlutterPlugin, FlutterStreamHandler {
+public class TotalProcessingPlugin: NSObject, FlutterPlugin, FlutterStreamHandler, OPPThreeDSEventListener{
     static let handleCheckoutResultEvent = "handleCheckoutResult"
     private var handleCheckoutResultSink: FlutterEventSink?
     
     static let customUIResultEvent = "customUIResult"
     private var customUIResultSink: FlutterEventSink?
+    private var navigationController: UINavigationController?
+    
+    override init() {
+        // Create a new instance of UINavigationController
+        let rootViewController = UIViewController()
+        navigationController = UINavigationController(rootViewController: rootViewController)
+    }
+    
+    public func onThreeDSChallengeRequired(completion: @escaping (UINavigationController) -> Void) {
+            guard let navigationController = self.navigationController else {
+                // Handle the case where navigationController is unexpectedly nil
+                return
+            }
+           completion(self.navigationController!)
+       }
+       
+    public func onThreeDSConfigRequired(completion: @escaping (OPPThreeDSConfig) -> Void) {
+           let config = OPPThreeDSConfig()
+           completion(config)
+       }
     
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         switch arguments as? String {
@@ -80,6 +100,8 @@ public class TotalProcessingPlugin: NSObject, FlutterPlugin, FlutterStreamHandle
                         self.customUIResultSink?(item)
                         return
                     }
+                    
+                    self.provider.threeDSEventListener=self
                     
                     self.provider.submitTransaction(transaction, completionHandler: { transaction, error in
                         DispatchQueue.main.async {
