@@ -1,33 +1,30 @@
 import Flutter
 import OPPWAMobile
 import UIKit
+import SafariServices
 
-public class TotalProcessingPlugin: NSObject, FlutterPlugin, FlutterStreamHandler, OPPThreeDSEventListener{
+public class TotalProcessingPlugin: UIViewController, FlutterPlugin, FlutterStreamHandler, OPPThreeDSEventListener, SFSafariViewControllerDelegate{
     static let handleCheckoutResultEvent = "handleCheckoutResult"
     private var handleCheckoutResultSink: FlutterEventSink?
     
     static let customUIResultEvent = "customUIResult"
     private var customUIResultSink: FlutterEventSink?
-    private var navigationController: UINavigationController?
+    private var safariVC: SFSafariViewController?
     
-    override init() {
-        // Create a new instance of UINavigationController
-        let rootViewController = UIViewController()
-        navigationController = UINavigationController(rootViewController: rootViewController)
+    func presenterURL(url: URL) {
+        self.safariVC = SFSafariViewController(url: url)
+        self.safariVC?.delegate = self;
+        self.present(safariVC!, animated: true, completion: nil)
     }
     
     public func onThreeDSChallengeRequired(completion: @escaping (UINavigationController) -> Void) {
-            guard let navigationController = self.navigationController else {
-                // Handle the case where navigationController is unexpectedly nil
-                return
-            }
-           completion(self.navigationController!)
-       }
+        completion(self.navigationController!)
+    }
        
     public func onThreeDSConfigRequired(completion: @escaping (OPPThreeDSConfig) -> Void) {
-           let config = OPPThreeDSConfig()
-           completion(config)
-       }
+        let config = OPPThreeDSConfig()
+        completion(config)
+    }
     
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         switch arguments as? String {
@@ -77,7 +74,7 @@ public class TotalProcessingPlugin: NSObject, FlutterPlugin, FlutterStreamHandle
                 let checkoutID = args["checkoutId"] as! String
                 let cardHolder = args["cardHolder"] as! String
                 let cardNumber = args["cardNumber"] as! String
-                if !OPPCardPaymentParams.isNumberValid(cardNumber,luhnCheck: true) {
+                if !OPPCardPaymentParams.isNumberValid(cardNumber, luhnCheck: true) {
                     var item: [String: Any?] = [:]
                     item["isErrored"] = true
                     var paymentError: [String: Any?] = [:]
@@ -101,7 +98,7 @@ public class TotalProcessingPlugin: NSObject, FlutterPlugin, FlutterStreamHandle
                         return
                     }
                     
-                    self.provider.threeDSEventListener=self
+                    self.provider.threeDSEventListener = self
                     
                     self.provider.submitTransaction(transaction, completionHandler: { transaction, error in
                         DispatchQueue.main.async {
