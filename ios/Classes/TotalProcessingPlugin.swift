@@ -123,7 +123,20 @@ public class TotalProcessingPlugin: UIViewController, FlutterPlugin, FlutterStre
                             var paymentParams: [String: Any?] = [:]
                             paymentParams["checkoutId"] = checkoutID
                             trans["paymentParams"] = paymentParams
-                            trans["desc"] = transaction.description
+                            trans["brandSpecificInfo"] = transaction.brandSpecificInfo
+                            trans["redirectUrl"] = transaction.redirectURL?.absoluteString
+                            var threeDS2Info: [String: Any?] = [:]
+                            threeDS2Info["authResponse"] = transaction.threeDS2Info?.authResponse
+                            threeDS2Info["authStatus"] = transaction.threeDS2Info?.authStatus.rawValue
+                            threeDS2Info["callbackURL"] = transaction.threeDS2Info?.callbackURL
+                            threeDS2Info["cardHolderInfo"] = transaction.threeDS2Info?.cardHolderInfo
+                            threeDS2Info["challengeCompletionCallbackUrl"] = transaction.threeDS2Info?.challengeCompletionCallbackUrl
+                            threeDS2Info["protocolVersion"] = transaction.threeDS2Info?.protocolVersion
+                            threeDS2Info["schemeConfig"] = transaction.threeDS2Info?.schemeConfig?.description
+                            threeDS2Info["threeDSFlow"] = transaction.threeDS2Info?.threeDSFlow.rawValue
+                            trans["threeDS2Info"] = threeDS2Info
+                            trans["threeDS2MethodRedirectUrl"] = transaction.threeDS2MethodRedirectURL?.absoluteString
+                            trans["yooKassaInfo"] = transaction.yooKassaInfo
                             item["transaction"] = trans
                             self.customUIResultSink?(item)
                         }
@@ -184,8 +197,21 @@ public class TotalProcessingPlugin: UIViewController, FlutterPlugin, FlutterStre
             var paymentParams: [String: Any?] = [:]
             paymentParams["checkoutId"] = checkoutID
             trans["paymentParams"] = paymentParams
-            trans["desc"] = transaction.description
-            item["transaction"] = trans
+            trans["brandSpecificInfo"] = transaction.brandSpecificInfo
+            trans["redirectUrl"] = transaction.redirectURL?.absoluteString
+            var threeDS2Info: [String: Any?] = [:]
+            threeDS2Info["authResponse"] = transaction.threeDS2Info?.authResponse
+            threeDS2Info["authStatus"] = transaction.threeDS2Info?.authStatus.rawValue
+            threeDS2Info["callbackURL"] = transaction.threeDS2Info?.callbackURL
+            threeDS2Info["cardHolderInfo"] = transaction.threeDS2Info?.cardHolderInfo
+            threeDS2Info["challengeCompletionCallbackUrl"] = transaction.threeDS2Info?.challengeCompletionCallbackUrl
+            threeDS2Info["protocolVersion"] = transaction.threeDS2Info?.protocolVersion
+            threeDS2Info["schemeConfig"] = transaction.threeDS2Info?.schemeConfig?.description
+            threeDS2Info["threeDSFlow"] = transaction.threeDS2Info?.threeDSFlow.rawValue
+            trans["threeDS2Info"] = threeDS2Info
+            trans["threeDS2MethodRedirectUrl"] = transaction.threeDS2MethodRedirectURL?.absoluteString
+            trans["yooKassaInfo"] = transaction.yooKassaInfo
+            item["transaction"] = trans          
             self.handleCheckoutResultSink?(item)
         }, cancelHandler: {
             // Executed if the shopper closes the payment page prematurely
