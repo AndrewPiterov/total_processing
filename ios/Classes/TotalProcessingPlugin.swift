@@ -1,30 +1,32 @@
 import Flutter
-import OPPWAMobile
-import UIKit
-//import SafariServices
+import SafariServices
 
-public class TotalProcessingPlugin: NSObject, FlutterPlugin, FlutterStreamHandler{
+
+public class TotalProcessingPlugin: UIViewController, FlutterPlugin,OPPThreeDSEventListener, FlutterStreamHandler,SFSafariViewControllerDelegate{
     static let handleCheckoutResultEvent = "handleCheckoutResult"
     private var handleCheckoutResultSink: FlutterEventSink?
     
     static let customUIResultEvent = "customUIResult"
     private var customUIResultSink: FlutterEventSink?
-//    private var safariVC: SFSafariViewController?
-//    
-//    func presenterURL(url: URL) {
-//        self.safariVC = SFSafariViewController(url: url)
-//        self.safariVC?.delegate = self;
-//        self.present(safariVC!, animated: true, completion: nil)
-//    }
-//    
-//    public func onThreeDSChallengeRequired(completion: @escaping (UINavigationController) -> Void) {
-//        completion(self.navigationController!)
-//    }
-//       
-//    public func onThreeDSConfigRequired(completion: @escaping (OPPThreeDSConfig) -> Void) {
-//        let config = OPPThreeDSConfig()
-//        completion(config)
-//    }
+    private var safariVC: SFSafariViewController?
+    
+    let provider = OPPPaymentProvider(mode: OPPProviderMode.live)
+    let checkoutSettings = OPPCheckoutSettings()
+    
+    func presenterURL(url: URL) {
+        self.safariVC = SFSafariViewController(url: url)
+        self.safariVC?.delegate = self;
+        self.present(safariVC!, animated: true, completion: nil)
+    }
+    
+    public func onThreeDSChallengeRequired(completion: @escaping (UINavigationController) -> Void) {
+        completion(self.navigationController!)
+    }
+       
+    public func onThreeDSConfigRequired(completion: @escaping (OPPThreeDSConfig) -> Void) {
+        let config = OPPThreeDSConfig()
+        completion(config)
+    }
     
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         switch arguments as? String {
@@ -91,16 +93,16 @@ public class TotalProcessingPlugin: NSObject, FlutterPlugin, FlutterStreamHandle
                 
                     let shopperResultURL = args["shopperResultUrl"] as! String
            
-                    guard let transaction = self.createTransaction(checkoutID: checkoutID, cardHolder: cardHolder, cardNumber: cardNumber, expiryMonth: expiryMonth, expiryYear: expiryYear, cvc: cvc, cardBrand: cardBrand, shopperResultURL: shopperResultURL) else {
+                    guard let transactionX = self.createTransaction(checkoutID: checkoutID, cardHolder: cardHolder, cardNumber: cardNumber, expiryMonth: expiryMonth, expiryYear: expiryYear, cvc: cvc, cardBrand: cardBrand, shopperResultURL: shopperResultURL) else {
                         var item: [String: Any?] = [:]
                         item["isCanceled"] = true
                         self.customUIResultSink?(item)
                         return
                     }
                     
-                    
-                
-                    self.provider.submitTransaction(transaction, completionHandler: { transaction, error in
+                    self.provider.threeDSEventListener = self
+
+                    self.provider.submitTransaction(transactionX, completionHandler: { transaction, error in
                         DispatchQueue.main.async {
                             var item: [String: Any?] = [:]
                             if error != nil {
@@ -151,8 +153,7 @@ public class TotalProcessingPlugin: NSObject, FlutterPlugin, FlutterStreamHandle
         }
     }
 
-    let provider = OPPPaymentProvider(mode: OPPProviderMode.live)
-    let checkoutSettings = OPPCheckoutSettings()
+
     
     func createTransaction(checkoutID: String, cardHolder: String, cardNumber: String, expiryMonth: String, expiryYear: String, cvc: String, cardBrand: String, shopperResultURL: String) -> OPPTransaction? {
         var item: [String: Any?] = [:]
@@ -173,6 +174,8 @@ public class TotalProcessingPlugin: NSObject, FlutterPlugin, FlutterStreamHandle
     }
     
     private func startCheckout(checkoutID: String) {
+        let config = OPPThreeDSConfig()
+        checkoutSettings.threeDSConfig = config
         let checkoutProvider = OPPCheckoutProvider(paymentProvider: provider, checkoutID: checkoutID, settings: checkoutSettings)
         var item: [String: Any?] = [:]
         // Since version 2.13.0

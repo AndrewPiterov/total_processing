@@ -37,7 +37,7 @@ class _ExamplePageState extends State<ExamplePage> {
   ValueNotifier isLoadingCustomUINotifier = ValueNotifier(false);
 
   // TODO: use your own production merchant server
-  String API_URL = '';
+  String API_URL = 'https://velopos.kakzaki.my.id/api/checkoutlive';
 
   _showSnackbar(String message) {
     final snackBar = SnackBar(

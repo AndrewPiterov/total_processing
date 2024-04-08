@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:developer';
@@ -20,6 +22,7 @@ class _CustomUIPageState extends State<CustomUIPage> {
   TextEditingController expiryController = TextEditingController();
   TextEditingController cvcController = TextEditingController();
   String cardBrand = 'VISA';
+
   String shopperResultUrl = "com.companyname.appname.payments://result";
 
   _showSnackbar(String message) {
@@ -75,6 +78,7 @@ class _CustomUIPageState extends State<CustomUIPage> {
           if (event['transaction'] != null) {
             _showSnackbar('Payment is Successful');
             log("${event['transaction']}", name: "transaction");
+            Navigator.of(context).pop();
           }
 
           // TODO: use your own merchant server to get status of the transaction
@@ -104,6 +108,14 @@ class _CustomUIPageState extends State<CustomUIPage> {
             shrinkWrap: true,
             physics: const ScrollPhysics(),
             children: [
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    cardBrand = cardBrand == 'VISA' ? 'MASTER' : 'VISA';
+                  });
+                },
+                child: Text(cardBrand),
+              ),
               TextFormField(
                 controller: cardNumberController,
                 decoration: const InputDecoration(
