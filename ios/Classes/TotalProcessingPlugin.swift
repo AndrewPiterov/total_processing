@@ -1,30 +1,30 @@
 import Flutter
 import OPPWAMobile
 import UIKit
-import SafariServices
+//import SafariServices
 
-public class TotalProcessingPlugin: UIViewController, FlutterPlugin, FlutterStreamHandler, OPPThreeDSEventListener, SFSafariViewControllerDelegate{
+public class TotalProcessingPlugin: NSObject, FlutterPlugin, FlutterStreamHandler{
     static let handleCheckoutResultEvent = "handleCheckoutResult"
     private var handleCheckoutResultSink: FlutterEventSink?
     
     static let customUIResultEvent = "customUIResult"
     private var customUIResultSink: FlutterEventSink?
-    private var safariVC: SFSafariViewController?
-    
-    func presenterURL(url: URL) {
-        self.safariVC = SFSafariViewController(url: url)
-        self.safariVC?.delegate = self;
-        self.present(safariVC!, animated: true, completion: nil)
-    }
-    
-    public func onThreeDSChallengeRequired(completion: @escaping (UINavigationController) -> Void) {
-        completion(self.navigationController!)
-    }
-       
-    public func onThreeDSConfigRequired(completion: @escaping (OPPThreeDSConfig) -> Void) {
-        let config = OPPThreeDSConfig()
-        completion(config)
-    }
+//    private var safariVC: SFSafariViewController?
+//    
+//    func presenterURL(url: URL) {
+//        self.safariVC = SFSafariViewController(url: url)
+//        self.safariVC?.delegate = self;
+//        self.present(safariVC!, animated: true, completion: nil)
+//    }
+//    
+//    public func onThreeDSChallengeRequired(completion: @escaping (UINavigationController) -> Void) {
+//        completion(self.navigationController!)
+//    }
+//       
+//    public func onThreeDSConfigRequired(completion: @escaping (OPPThreeDSConfig) -> Void) {
+//        let config = OPPThreeDSConfig()
+//        completion(config)
+//    }
     
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         switch arguments as? String {
@@ -98,8 +98,8 @@ public class TotalProcessingPlugin: UIViewController, FlutterPlugin, FlutterStre
                         return
                     }
                     
-                    self.provider.threeDSEventListener = self
                     
+                
                     self.provider.submitTransaction(transaction, completionHandler: { transaction, error in
                         DispatchQueue.main.async {
                             var item: [String: Any?] = [:]
