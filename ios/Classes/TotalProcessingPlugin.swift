@@ -217,11 +217,29 @@ public class TotalProcessingPlugin: UIViewController, FlutterPlugin, FlutterStre
     }
 }
 
-class ThreeDSChallengeViewController: UINavigationController, OPPThreeDSEventListener {
-    public func onThreeDSChallengeRequired(completion: @escaping (UINavigationController) -> Void) {
-        completion(self)
+class ThreeDSChallengeViewController: UIViewController, OPPThreeDSEventListener {
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
-    
+
+    public func onThreeDSChallengeRequired(completion: @escaping (UINavigationController) -> Void) {
+        if let navigationController = navigationController {
+            completion(navigationController)
+        } else {
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let window = windowScene.windows.first,
+                  let rootViewController = window.rootViewController else {
+                // Handle the case where the required objects are not available
+                print("Unable to create navigation controller")
+                return
+            }
+
+            let newNavigationController = UINavigationController(rootViewController: self)
+            newNavigationController.setViewControllers([rootViewController, self], animated: true)
+            completion(newNavigationController)
+        }
+    }
+
     public func onThreeDSConfigRequired(completion: @escaping (OPPThreeDSConfig) -> Void) {
         let config = OPPThreeDSConfig()
         completion(config)

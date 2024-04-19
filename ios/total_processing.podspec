@@ -17,7 +17,7 @@ A new Flutter project.
   s.dependency 'Flutter'
   s.public_header_files = 'Classes/**/*.h'
 
-  s.platform = :ios, '12.0'
+  s.platform = :ios, '13.0'
   s.vendored_frameworks='FR/OPPWAMobile.xcframework',
      'FR/ipworks3ds_sdk.xcframework'
 
