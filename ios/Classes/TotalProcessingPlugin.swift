@@ -1,8 +1,7 @@
 import Flutter
 import SafariServices
 
-
-public class TotalProcessingPlugin: UIViewController, FlutterPlugin,OPPThreeDSEventListener, FlutterStreamHandler,SFSafariViewControllerDelegate{
+public class TotalProcessingPlugin: UIViewController, FlutterPlugin, FlutterStreamHandler, SFSafariViewControllerDelegate {
     static let handleCheckoutResultEvent = "handleCheckoutResult"
     private var handleCheckoutResultSink: FlutterEventSink?
     
@@ -13,19 +12,17 @@ public class TotalProcessingPlugin: UIViewController, FlutterPlugin,OPPThreeDSEv
     let provider = OPPPaymentProvider(mode: OPPProviderMode.live)
     let checkoutSettings = OPPCheckoutSettings()
     
-    func presenterURL(url: URL) {
-        self.safariVC = SFSafariViewController(url: url)
-        self.safariVC?.delegate = self;
-        self.present(safariVC!, animated: true, completion: nil)
+    let threeDSChallengeViewController = ThreeDSChallengeViewController()
+    
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+        self.provider.threeDSEventListener = self.threeDSChallengeViewController
     }
     
-    public func onThreeDSChallengeRequired(completion: @escaping (UINavigationController) -> Void) {
-        completion(self.navigationController!)
-    }
-       
-    public func onThreeDSConfigRequired(completion: @escaping (OPPThreeDSConfig) -> Void) {
-        let config = OPPThreeDSConfig()
-        completion(config)
+    func presenterURL(url: URL) {
+        self.safariVC = SFSafariViewController(url: url)
+        self.safariVC?.delegate = self
+        self.present(self.safariVC!, animated: true, completion: nil)
     }
     
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
@@ -100,8 +97,6 @@ public class TotalProcessingPlugin: UIViewController, FlutterPlugin,OPPThreeDSEv
                         return
                     }
                     
-                    self.provider.threeDSEventListener = self
-
                     self.provider.submitTransaction(transactionX, completionHandler: { transaction, error in
                         DispatchQueue.main.async {
                             var item: [String: Any?] = [:]
@@ -153,8 +148,6 @@ public class TotalProcessingPlugin: UIViewController, FlutterPlugin,OPPThreeDSEv
         }
     }
 
-
-    
     func createTransaction(checkoutID: String, cardHolder: String, cardNumber: String, expiryMonth: String, expiryYear: String, cvc: String, cardBrand: String, shopperResultURL: String) -> OPPTransaction? {
         var item: [String: Any?] = [:]
         do {
@@ -175,7 +168,7 @@ public class TotalProcessingPlugin: UIViewController, FlutterPlugin,OPPThreeDSEv
     
     private func startCheckout(checkoutID: String) {
         let config = OPPThreeDSConfig()
-        checkoutSettings.threeDSConfig = config
+        self.checkoutSettings.threeDSConfig = config
         let checkoutProvider = OPPCheckoutProvider(paymentProvider: provider, checkoutID: checkoutID, settings: checkoutSettings)
         var item: [String: Any?] = [:]
         // Since version 2.13.0
@@ -214,12 +207,23 @@ public class TotalProcessingPlugin: UIViewController, FlutterPlugin,OPPThreeDSEv
             trans["threeDS2Info"] = threeDS2Info
             trans["threeDS2MethodRedirectUrl"] = transaction.threeDS2MethodRedirectURL?.absoluteString
             trans["yooKassaInfo"] = transaction.yooKassaInfo
-            item["transaction"] = trans          
+            item["transaction"] = trans
             self.handleCheckoutResultSink?(item)
         }, cancelHandler: {
             // Executed if the shopper closes the payment page prematurely
             item["isCanceled"] = true
             self.handleCheckoutResultSink?(item)
         })
+    }
+}
+
+class ThreeDSChallengeViewController: UINavigationController, OPPThreeDSEventListener {
+    public func onThreeDSChallengeRequired(completion: @escaping (UINavigationController) -> Void) {
+        completion(self)
+    }
+    
+    public func onThreeDSConfigRequired(completion: @escaping (OPPThreeDSConfig) -> Void) {
+        let config = OPPThreeDSConfig()
+        completion(config)
     }
 }
