@@ -96,7 +96,6 @@ public class TotalProcessingPlugin: UIViewController, FlutterPlugin, FlutterStre
                         self.customUIResultSink?(item)
                         return
                     }
-                    
                     self.provider.submitTransaction(transactionX, completionHandler: { transaction, error in
                         DispatchQueue.main.async {
                             var item: [String: Any?] = [:]
@@ -223,25 +222,30 @@ class ThreeDSChallengeViewController: UIViewController, OPPThreeDSEventListener 
     }
 
     public func onThreeDSChallengeRequired(completion: @escaping (UINavigationController) -> Void) {
-        if let navigationController = navigationController {
-            completion(navigationController)
-        } else {
-            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                  let window = windowScene.windows.first,
-                  let rootViewController = window.rootViewController else {
-                // Handle the case where the required objects are not available
-                print("Unable to create navigation controller")
-                return
+        DispatchQueue.main.async {
+            if let navigationController = self.navigationController {
+                completion(navigationController)
+            } else {
+                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                      let window = windowScene.windows.first,
+                      let rootViewController = window.rootViewController
+                else {
+                    // Handle the case where the required objects are not available
+                    print("Unable to create navigation controller")
+                    return
+                }
+                
+                let newNavigationController = UINavigationController(rootViewController: self)
+                newNavigationController.setViewControllers([rootViewController, self], animated: true)
+                completion(newNavigationController)
             }
-
-            let newNavigationController = UINavigationController(rootViewController: self)
-            newNavigationController.setViewControllers([rootViewController, self], animated: true)
-            completion(newNavigationController)
         }
     }
 
     public func onThreeDSConfigRequired(completion: @escaping (OPPThreeDSConfig) -> Void) {
-        let config = OPPThreeDSConfig()
-        completion(config)
+        DispatchQueue.main.async {
+            let config = OPPThreeDSConfig()
+            completion(config)
+        }
     }
 }
